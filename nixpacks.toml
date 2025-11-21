@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["jdk"]
+
+[phases.build]
+cmds = ["javac -d out src/com/teenupi/*.java src/com/teenupi/model/*.java src/com/teenupi/service/*.java"]
+
+[start]
+cmd = "java -cp out com.teenupi.TeenPayApp"

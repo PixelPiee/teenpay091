@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: teenpay
+    env: docker
+    buildCommand: javac -d out src/com/teenupi/*.java src/com/teenupi/model/*.java src/com/teenupi/service/*.java
+    startCommand: java -cp out com.teenupi.TeenPayApp
+    envVars:
+      - key: PORT
+        value: 10000
