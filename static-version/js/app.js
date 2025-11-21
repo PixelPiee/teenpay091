@@ -1,6 +1,6 @@
 // Configuration
-// const API_BASE_URL = "https://teenpay.onrender.com"; // Use this for production
-const API_BASE_URL = "http://localhost:8000"; // Use this for local testing
+const API_BASE_URL = "https://teenpay091.onrender.com"; // Production Render URL
+// const API_BASE_URL = "http://localhost:8000"; // Use this for local testing
 
 // State
 let currentUser = {};
