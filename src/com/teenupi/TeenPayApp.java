@@ -137,9 +137,10 @@ public class TeenPayApp {
             StringBuilder json = new StringBuilder("[");
             for (int i = 0; i < txs.size(); i++) {
                 Transaction tx = txs.get(i);
+                String note = tx.getNote() == null ? "" : tx.getNote().replace("\\", "\\\\").replace("\"", "\\\"");
                 json.append(String.format(
                         "{\"sender\":\"%s\",\"receiver\":\"%s\",\"amount\":%s,\"note\":\"%s\",\"createdAt\":\"%s\"}",
-                        tx.getSender().getUpiId(), tx.getReceiver().getUpiId(), tx.getAmount(), tx.getNote(),
+                        tx.getSender().getUpiId(), tx.getReceiver().getUpiId(), tx.getAmount(), note,
                         tx.getCreatedAt()));
                 if (i < txs.size() - 1)
                     json.append(",");
