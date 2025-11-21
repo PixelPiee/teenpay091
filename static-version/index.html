@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeenUPI - Vibe Your Money</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Outfit", "sans-serif"],
+                    },
+                    colors: {
+                        primary: "#6366f1",
+                        secondary: "#a855f7",
+                        accent: "#ec4899",
+                        background: "#0f172a",
+                        surface: "#1e293b",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-background text-slate-50 font-sans antialiased selection:bg-accent selection:text-white">
+    <div class="mx-auto max-w-md min-h-screen bg-background relative overflow-hidden shadow-2xl ring-1 ring-white/10">
+
+        <!-- Background Gradients -->
+        <div class="fixed inset-0 z-0 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[100px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-accent/20 blur-[100px]">
+            </div>
+        </div>
+
+        <!-- Content Wrapper -->
+        <div class="relative z-10 flex flex-col min-h-screen pb-20">
+
+            <!-- Header -->
+            <header class="sticky top-0 z-50 backdrop-blur-xl border-b border-white/5 bg-background/80 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="relative group cursor-pointer">
+                            <div id="main-avatar-container">
+                                <!-- Avatar will be injected here by JS -->
+                            </div>
+                            <input type="file" id="profile-upload" class="hidden" accept="image/*">
+                            <div class="absolute -bottom-1 -right-1 bg-surface rounded-full p-1 border border-white/10 shadow-sm group-hover:scale-110 transition-transform"
+                                onclick="document.getElementById('profile-upload').click()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="text-slate-400">
+                                    <path
+                                        d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                                    <circle cx="12" cy="13" r="3" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-lg font-bold leading-tight" id="user-name">Loading...</h1>
+                            <p class="text-xs text-slate-400 font-medium" id="user-upi">@teen</p>
+                        </div>
+                    </div>
+                    <button class="p-2 rounded-full hover:bg-white/5 transition-colors relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                        </svg>
+                        <span
+                            class="absolute top-2 right-2 size-2 bg-accent rounded-full border-2 border-background"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Balance Card -->
+            <section class="px-6 pt-8 pb-6">
+                <div
+                    class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-secondary to-accent p-6 shadow-lg ring-1 ring-white/20">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 size-32 rounded-full bg-white/10 blur-2xl"></div>
+                    <div class="absolute bottom-0 left-0 -mb-4 -ml-4 size-24 rounded-full bg-black/10 blur-xl"></div>
+
+                    <div class="relative z-10">
+                        <p class="text-sm font-medium text-white/80 mb-1">Total Balance</p>
+                        <h2 class="text-4xl font-bold text-white tracking-tight mb-6" id="user-balance">₹0.00</h2>
+
+                        <div class="flex gap-3">
+                            <button
+                                class="flex-1 bg-white/20 hover:bg-white/30 text-white py-2.5 rounded-xl text-sm font-semibold backdrop-blur-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                </svg>
+                                Add Money
+                            </button>
+                            <button
+                                class="flex-1 bg-black/20 hover:bg-black/30 text-white py-2.5 rounded-xl text-sm font-semibold backdrop-blur-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="17 1 21 5 17 9" />
+                                    <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                                    <polyline points="7 23 3 19 7 15" />
+                                    <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                                </svg>
+                                Scan & Pay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Send (Friends Rail) -->
+            <section class="px-6 py-2">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Quick Send</h3>
+                    <button class="text-xs text-primary hover:text-primary/80 font-medium">View All</button>
+                </div>
+
+                <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide" id="friends-rail">
+                    <!-- Friends will be injected here by JS -->
+                </div>
+            </section>
+
+            <!-- Send Money Form -->
+            <section class="px-6 py-4">
+                <div class="bg-surface/50 backdrop-blur-sm rounded-2xl p-5 border border-white/5">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="text-accent">
+                            <line x1="12" y1="1" x2="12" y2="23" />
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                        Send Money
+                    </h3>
+                    <form id="send-money-form" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1.5">Receiver</label>
+                            <div class="relative">
+                                <select name="receiverUpiId" id="receiver-select"
+                                    class="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 appearance-none text-slate-200">
+                                    <!-- Options injected by JS -->
+                                </select>
+                                <div class="absolute right-4 top-3.5 pointer-events-none text-slate-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m6 9 6 6 6-6" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1.5">Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-3 text-slate-500 font-bold">₹</span>
+                                <input type="number" name="amount" placeholder="0.00" min="1" step="0.01" required
+                                    class="w-full bg-background border border-white/10 rounded-xl pl-8 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-slate-600 font-bold" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1.5">Note (Optional)</label>
+                            <input type="text" name="note" placeholder="What's this for?"
+                                class="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-slate-600" />
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                            Send Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="px-6 py-4 pb-24">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Recent Activity</h3>
+                    <span class="text-xs bg-white/5 px-2 py-1 rounded-md text-slate-400" id="timeline-count">0</span>
+                </div>
+
+                <div class="space-y-0 relative border-l-2 border-white/5 ml-3" id="timeline-list">
+                    <!-- Timeline items injected by JS -->
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Bottom Nav -->
+        <nav
+            class="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-t border-white/5 px-6 py-3 max-w-md mx-auto">
+            <div class="flex justify-around items-center">
+                <button class="flex flex-col items-center gap-1 text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                    <span class="text-[10px] font-medium">Home</span>
+                </button>
+                <button class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                    <span class="text-[10px] font-medium">Explore</span>
+                </button>
+                <div class="relative -top-6">
+                    <button
+                        class="bg-accent hover:bg-accent/90 text-white p-4 rounded-full shadow-lg shadow-accent/30 transition-transform active:scale-95 ring-4 ring-background">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <span class="text-[10px] font-medium">Chat</span>
+                </button>
+                <button class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span class="text-[10px] font-medium">Profile</span>
+                </button>
+            </div>
+        </nav>
+
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

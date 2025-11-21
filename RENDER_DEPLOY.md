@@ -27,10 +27,16 @@
    - Select your `teenpay` repository
    - Settings:
      - **Name**: teenpay
-     - **Environment**: Docker
-     - **Build Command**: `javac -d out src/com/teenupi/*.java src/com/teenupi/model/*.java src/com/teenupi/service/*.java`
-     - **Start Command**: `java -cp out com.teenupi.TeenPayApp`
+     - **Language**: Docker
+     - **Region**: Singapore (or closest to you)
+     - **Branch**: main
+     - **Root Directory**: (leave empty)
+     - **Runtime**: Docker
+     - **Instance Type**: Free
+
    - Click "Create Web Service"
+
+   > **Note**: Since we added a `Dockerfile`, Render will automatically detect it and know how to build your app. You don't need to enter any build commands manually!
 
 ### Option 2: Using Render Blueprint (Easier)
 
